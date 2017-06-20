@@ -1,22 +1,17 @@
 // Always shows a header, even in smaller screens.
-.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
-  header.mdl-layout__header
-    .mdl-layout__header-row
-      // Title
-      span.mdl-layout-title Title
-      // Add spacer, to align navigation to the right
-      .mdl-layout-spacer
-      // Navigation. We hide it in small screens.
-      nav.mdl-navigation.mdl-layout--large-screen-only
-        a.mdl-navigation__link.is-active(href='#intheater') In Theaters
-        a.mdl-navigation__link(href='#search') Search Movies
-  .mdl-layout__drawer.mdl-layout--small-screen-only
+header.mdl-layout__header
+  .mdl-layout__header-row
+    // Title
     span.mdl-layout-title Title
-    nav.mdl-navigation
-      a.mdl-navigation__link.is-active(href='#intheater') In Theaters
+    // Add spacer, to align navigation to the right
+    .mdl-layout-spacer
+    // Navigation. We hide it in small screens.
+    nav.mdl-navigation.mdl-layout--large-screen-only
+      a.mdl-navigation__link.is-active(href='#now-playing') In Theaters
       a.mdl-navigation__link(href='#search') Search Movies
-  main.mdl-layout__content
-    .page
-      // Your content goes here
-      h5.page__header
-        | In Theaters
+.mdl-layout__drawer.mdl-layout--small-screen-only
+  span.mdl-layout-title Title
+  nav.mdl-navigation
+    a.mdl-navigation__link.is-active(href='#now-playing') In Theaters
+    a.mdl-navigation__link(href='#search') Search Movies
+

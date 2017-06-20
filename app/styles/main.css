@@ -19,3 +19,7 @@
   font-family: 'Roboto Mono', monospace;
   margin-left: 24px;
 }
+
+section {
+  color: white !important;
+}
