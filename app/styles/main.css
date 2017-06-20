@@ -1,0 +1,21 @@
+.mdl-layout__container,
+.mdl-layout__header,
+.mdl-layout__drawer,
+.mdl-navigation {
+  background: #212121 !important;
+  color: white !important;
+}
+
+.mdl-layout__container, .mdl-layout-title {
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+.mdl-navigation__link.is-active {
+  color: #00e871 !important;
+  border-bottom: 2px solid #00e871;
+}
+
+.page__header {
+  font-family: 'Roboto Mono', monospace;
+  margin-left: 24px;
+}
