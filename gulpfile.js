@@ -238,12 +238,13 @@ gulp.task('lint:test', () => {
 });
 
 gulp.task('html', ['views', 'styles', 'scripts'], () => {
-  //return gulp.src('app/*.html')
-  return gulp.src(['app/*.html', '.tmp/*.html'])
-    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+  // return gulp.src('app/*.html')
+  // return gulp.src(['app/*.html', '.tmp/*.html'])
+  return gulp.src('app/**/*[.js, .html, .css]')
+    // .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
-    // .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
+    .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest('dist'));
 });
 
@@ -361,6 +362,5 @@ gulp.task('views', () => {
     .pipe($.plumber())
     .pipe($.pug({pretty: true}))
     .pipe(gulp.dest('.tmp'))
-    .pipe(gulp.dest('app')) //TODO: Temp for cross origin issues with map, should delete later
     .pipe(reload({stream: true}));
 });
