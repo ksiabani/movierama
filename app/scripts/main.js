@@ -20,11 +20,20 @@
     //   // Render route template with John Resig's template engine:
     //   el.innerHTML = tmpl(route.templateId, new route.controller());
     // }
-    console.log('Route change!', route, url, document.getElementById(liveTemplate));
+    // console.log('Route change!', route, url, document.getElementById(liveTemplate));
 
-    document.getElementsByTagName('section')[0].style.display = 'none';
-    document.getElementsByTagName('section')[1].style.display = 'none';
+
+    Array.prototype.map.call(document.getElementsByTagName('section'), function(el){
+      el.style.display = 'none';
+    });
     document.getElementById(liveTemplate).style.display = 'block';
+
+    Array.prototype.map.call(document.querySelectorAll('nav a'), function(el){
+      el.classList.remove('is-active');
+    });
+    document.querySelector('nav a[href="#' + liveTemplate + '"]').classList.add('is-active');
+
+
   }
 
 // Listen on hash change:
