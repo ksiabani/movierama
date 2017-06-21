@@ -26,7 +26,7 @@
     Array.prototype.map.call(document.getElementsByTagName('section'), function(el){
       el.style.display = 'none';
     });
-    document.getElementById(liveTemplate).style.display = 'block';
+    document.getElementById(liveTemplate).style.display = 'flex';
 
     Array.prototype.map.call(document.querySelectorAll('nav a'), function(el){
       el.classList.remove('is-active');

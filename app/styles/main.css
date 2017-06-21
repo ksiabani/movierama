@@ -23,3 +23,91 @@
 section {
   color: white !important;
 }
+
+.mdl-layout__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+section {
+  width: 100%;
+  max-width: 1312px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 1312px) and (min-width: 721px) {
+  section {
+    max-width: 1400px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+.movie-card.mdl-card {
+  width: 300px;
+  height: 450px;
+  background: url("http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg") center/cover;
+  margin: 8px;
+}
+
+.movie-card > .mdl-card__actions {
+  height: 150px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.movie-card {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.movie-card__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.movie-card__meta {
+  font-size: 1rem;
+}
+
+.movie-card__meta__rating {
+  color: #00e871;
+  font-weight: 500;
+  padding-left: 16px;
+}
+
+.movie-card__genres {
+  font-size: 1rem;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-card__overview {
+  padding-top: 4px;
+  font-size: 0.9rem;
+  overflow: hidden;
+  max-height: 45px;
+}
