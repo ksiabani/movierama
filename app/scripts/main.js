@@ -1,3 +1,15 @@
+//infinite scroll
+var distToBottom, data, dataObj;
+var page = 1;
+var pollingForData = false; //?
+var apiKey = 'bc50218d91157b1ba4f142ef7baaa6a0';
+var baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=' + apiKey;
+var fetchUrl = baseUrl + '&page=' + page;
+var cardClone;
+
+
+
+
 // A hash to store our routes:
 var routes = {};
 //
@@ -57,15 +69,70 @@ window.addEventListener('load', router);
 
 
 //let's fetch
-var fetchUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=bc50218d91157b1ba4f142ef7baaa6a0';
-fetch(fetchUrl)
+
+
+
+fetch(baseUrl + '&page=' + page)
   .then(response => response.json())
   .then(function (data) {
-    console.log(data.results);
+    loadContent(data)
   })
   .catch(function (err) {
     console.log('Error:' + err);
   });
 
 
+function loadContent(data) {
+  // pollingForData = false;
+  // console.log(data.results);
+  data.results.map(function(movie){
+    cardClone = document.getElementsByClassName('movie-card')[0].cloneNode(true);
+    document.getElementById('now-playing').appendChild(cardClone);
+    cardClone.style.display = 'flex';
+    cardClone.querySelector('.movie-card__title').textContent = movie.title;
+    cardClone.style.backgroundImage = 'url(http://image.tmdb.org/t/p/w300' + movie.poster_path + ')';
+  });
+}
 
+var content = document.getElementsByClassName('mdl-layout__content')[0];
+
+content.addEventListener('scroll', function() { //window or document
+  // distToBottom = getDistFromBottom();
+  // console.log('scrolling', getDistFromBottom());
+
+  var reachedBottom = content.scrollHeight - content.scrollTop === content.clientHeight;
+
+  // if (!pollingForData && distToBottom > 0 && distToBottom <= 8888) {
+  if (reachedBottom) {
+    pollingForData = true;
+    // loadingContainer.classList.add('no-content');
+
+    page++;
+    fetch(baseUrl + '&page=' + page)
+        .then(response => response.json())
+        .then(function (data) {
+          loadContent(data)
+        })
+        .catch(function (err) {
+          console.log('Error:' + err);
+        });
+
+  }
+});
+
+function getDistFromBottom () {
+
+  var scrollPosition = window.pageYOffset;
+  var windowSize     = window.innerHeight;
+  var bodyHeight     = document.body.offsetHeight;
+
+  console.log(content.scrollHeight - content.scrollTop === content.clientHeight);
+
+  console.log(content.scrollHeight, content.scrollTop, content.clientHeight);
+
+  return Math.max(bodyHeight - (scrollPosition + windowSize), 0);
+
+}
+
+// var objDiv = document.getElementById("your_div");
+// objDiv.scrollTop = objDiv.scrollHeight;

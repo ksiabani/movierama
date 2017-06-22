@@ -62,6 +62,7 @@ section {
   background: url("http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg") center/cover;
   margin: 8px;
   cursor: pointer;
+  display: none;
 }
 
 .movie-card > .mdl-card__actions {
