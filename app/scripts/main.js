@@ -1,9 +1,11 @@
 //infinite scroll
 var distToBottom, data, dataObj;
 var page = 1;
+var searchPage = 1;
 var pollingForData = false; //?
 var apiKey = 'bc50218d91157b1ba4f142ef7baaa6a0';
 var baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=' + apiKey;
+var searchUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' + apiKey;
 var fetchUrl = baseUrl + '&page=' + page;
 var cardClone;
 
@@ -136,3 +138,34 @@ function getDistFromBottom () {
 
 // var objDiv = document.getElementById("your_div");
 // objDiv.scrollTop = objDiv.scrollHeight;
+
+
+document.getElementById('search-input')
+  .addEventListener('keyup', function(e){
+    searchMovies(document.getElementById('search-input').value);
+});
+
+
+function searchMovies(searchText){
+//https://api.themoviedb.org/3/search/movie?api_key=bc50218d91157b1ba4f142ef7baaa6a0&query=x-men
+  fetch(searchUrl + '&query=' + searchText + '&page=' + searchPage)
+    .then(response => response.json())
+    .then(function (data) {
+      loadSearchResults(data)
+    })
+    .catch(function (err) {
+      console.log('Error:' + err);
+    });
+}
+
+function loadSearchResults(data) {
+  // pollingForData = false;
+  // console.log(data.results);
+  data.results.map(function(movie){
+    cardClone = document.getElementsByClassName('movie-card')[0].cloneNode(true);
+    document.getElementById('search').appendChild(cardClone);
+    cardClone.style.display = 'flex';
+    cardClone.querySelector('.movie-card__title').textContent = movie.title;
+    cardClone.style.backgroundImage = 'url(http://image.tmdb.org/t/p/w300' + movie.poster_path + ')';
+  });
+}

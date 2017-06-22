@@ -113,5 +113,20 @@ section {
     max-height: 45px;
   }
 
+}
+
+.mdl-textfield {
+
+  &__input {
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  &__label {
+    color: white;
+
+    &:after {
+      background-color: white;
+    }
+  }
 
 }
