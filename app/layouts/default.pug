@@ -30,11 +30,12 @@ html.no-js(lang='')
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
       block header
       main.mdl-layout__content
-        section#now-playing
+        section#now-playing.mdl-grid
           block now-playing
         section#search
           block search
 
     script(src='scripts/main.js')
     script(src='/bower_components/modernizr/modernizr.js')
+    script(src='/bower_components/smoothscroll/dist/smoothscroll.js')
     script(src='https://code.getmdl.io/1.3.0/material.min.js')

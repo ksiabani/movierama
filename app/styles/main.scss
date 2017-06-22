@@ -52,7 +52,8 @@ section {
   padding-right: 16px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  //transition: flex 0.6s ease;
 
   @media (max-width: 1312px) and (min-width: 721px) {
     max-width: 1400px;
@@ -62,13 +63,15 @@ section {
 }
 
 // cards
-.movie-card.mdl-card {
-  width: 300px;
-  height: 450px;
-  background: url('http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg') center / cover;
-  margin: 8px;
-  cursor: pointer;
-  display: none;
+.mdl-card {
+  //max-width: 300px;
+  //height: 450px;
+  //background: url('http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg') center / cover;
+  //margin: 8px;
+  //cursor: pointer;
+  //display: none;
+  //flex-wrap: nowrap;
+  min-height: 0;
 }
 
 .movie-card > .mdl-card__actions {
@@ -80,9 +83,23 @@ section {
 }
 
 .movie-card {
+  //max-width: 300px;
+  height: 450px;
+  background: url('http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg') center / cover;
+  margin: 8px;
+  cursor: pointer;
+  display: none;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.6s ease;
+  //flex: 0 1 auto;
+
+  &:hover + .mdl-cell--12-col {
+    //height: 450px !important;
+    //visibility: visible !important;
+    //opacity: 1 !important;
+  }
 
   &__title {
     font-size: 1.3rem;

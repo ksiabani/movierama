@@ -43,9 +43,9 @@ section {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 @media (max-width: 1312px) and (min-width: 721px) {
@@ -56,13 +56,8 @@ section {
   }
 }
 
-.movie-card.mdl-card {
-  width: 300px;
-  height: 450px;
-  background: url("http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg") center/cover;
-  margin: 8px;
-  cursor: pointer;
-  display: none;
+.mdl-card {
+  min-height: 0;
 }
 
 .movie-card > .mdl-card__actions {
@@ -79,9 +74,15 @@ section {
 }
 
 .movie-card {
+  height: 450px;
+  background: url("http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg") center/cover;
+  margin: 8px;
+  cursor: pointer;
+  display: none;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.6s ease;
 }
 
 .movie-card__title {
