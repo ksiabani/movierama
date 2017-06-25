@@ -299,6 +299,13 @@ section {
           align-items: center;
 }
 
+.jawbone__trailers__no-trailer {
+  display: none;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
 .jawbone__trailers__trailer {
   width: 20vw;
   margin: 16px;
@@ -330,8 +337,13 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+}
+
+.jawbone__reviews__no-review {
+  display: none;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .jawbone__reviews__review {
@@ -367,6 +379,13 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.jawbone__similar__no-similar {
+  display: none;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .jawbone__similar__movie {

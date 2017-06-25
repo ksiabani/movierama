@@ -221,32 +221,50 @@
                 overviewTab.querySelector('.jawbone__overview__meta__year').textContent = movieDetails.release_date.substring(0, 4);
                 overviewTab.querySelector('.jawbone__overview__meta__rating').textContent = movieDetails.vote_average + '/10';
 
-                Array.from(trailers).map(function (trailer, i) {
-                    if (movieDetails.trailers.youtube[i]) {
-                        trailer.querySelector('img').src = 'http://img.youtube.com/vi/' + movieDetails.trailers.youtube[i].source + '/sddefault.jpg';
-                        trailer.style.display = 'block';
-                        trailer.querySelector('.jawbone__trailers__trailer__title').textContent = movieDetails.trailers.youtube[i].name;
-                    }
-                });
+                if (movieDetails.trailers.youtube.length === 0) {
+                    trailersTab.querySelector('.js-no-trailer').style.display = 'block';
+                    trailersTab.querySelector('.js-no-trailer a').href = 'http://www.imdb.com/title/' + movieDetails.imdb_id;
+                }
+                else {
+                    Array.from(trailers).map(function (trailer, i) {
+                        if (movieDetails.trailers.youtube[i]) {
+                            trailer.href = 'https://www.youtube.com/watch?v=' + movieDetails.trailers.youtube[i].source;
+                            trailer.querySelector('img').src = 'http://img.youtube.com/vi/' + movieDetails.trailers.youtube[i].source + '/sddefault.jpg';
+                            trailer.style.display = 'block';
+                            trailer.querySelector('.jawbone__trailers__trailer__title').textContent = movieDetails.trailers.youtube[i].name;
+                        }
+                    });
+                }
 
-                Array.from(reviews).map(function (review, i) {
-                    if (movieDetails.reviews.results[i]) {
-                        review.style.display = 'block';
-                        review.querySelector('.js-review-author').textContent = " " + movieDetails.reviews.results[i].author;
-                        review.querySelector('.js-review-text').textContent = movieDetails.reviews.results[i].content;
-                    }
-                });
+                if (movieDetails.reviews.results.length === 0) {
+                    reviewsTab.querySelector('.js-no-review a').href = 'http://www.imdb.com/title/' + movieDetails.imdb_id;
+                    reviewsTab.querySelector('.js-no-review').style.display = 'block';
+                }
+                else {
+                    Array.from(reviews).map(function (review, i) {
+                        if (movieDetails.reviews.results[i]) {
+                            review.style.display = 'block';
+                            review.querySelector('.js-review-author').textContent = " " + movieDetails.reviews.results[i].author;
+                            review.querySelector('.js-review-text').textContent = movieDetails.reviews.results[i].content;
+                        }
+                    });
+                }
 
-                Array.from(similarMovies).map(function (similar, i) {
-                    if (movieDetails.similar.results[i]) {
-                        similar.style.display = 'block';
-                        similar.style.backgroundImage = 'url(http://image.tmdb.org/t/p/w300' + movieDetails.similar.results[i].poster_path + ')';
-                        similar.querySelector('.js-similar-title').textContent = movieDetails.similar.results[i].original_title;
-                        similar.querySelector('.js-similar-year').textContent = movieDetails.similar.results[i].release_date.substring(0, 4);
-                        similar.querySelector('.js-similar-rating').textContent = movieDetails.similar.results[i].vote_average + '/10';
-                        similar.querySelector('.js-similar-overview').textContent = movieDetails.similar.results[i].overview;
-                    }
-                });
+                if (movieDetails.similar.results.length === 0) {
+                    similarTab.querySelector('.js-no-similar').style.display = 'block';
+                }
+                else {
+                    Array.from(similarMovies).map(function (similar, i) {
+                        if (movieDetails.similar.results[i]) {
+                            similar.style.display = 'block';
+                            similar.style.backgroundImage = 'url(http://image.tmdb.org/t/p/w300' + movieDetails.similar.results[i].poster_path + ')';
+                            similar.querySelector('.js-similar-title').textContent = movieDetails.similar.results[i].original_title;
+                            similar.querySelector('.js-similar-year').textContent = movieDetails.similar.results[i].release_date.substring(0, 4);
+                            similar.querySelector('.js-similar-rating').textContent = movieDetails.similar.results[i].vote_average + '/10';
+                            similar.querySelector('.js-similar-overview').textContent = movieDetails.similar.results[i].overview;
+                        }
+                    });
+                }
 
 
             })

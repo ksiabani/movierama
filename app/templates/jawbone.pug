@@ -13,27 +13,34 @@
         .jawbone__overview__genres Action, Adventure, Drama, Western
         .jawbone__overview__description An Amazon princess comes to the world of Man to become the greatest of the female superheroes.
     .jawbone__trailers.js-tab-trailers
-        .jawbone__trailers__trailer
+        .jawbone__trailers__no-trailer.js-no-trailer
+            span Sorry, no trailer found. Why don't you &nbsp;
+            a(href, target="_blank") add one?
+        a(href, target="_blank").jawbone__trailers__trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-        .jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-        .jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-        .jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
     .jawbone__reviews.js-tab-reviews
+        .jawbone__reviews__no-review.js-no-review
+            span Sorry, no reviews for this movie yet. &nbsp;
+            a(href, target="_blank") Be the first
+            | &nbsp; to write one.
         .jawbone__reviews__review.js-review
             .jawbone__reviews__review__author
                 i by
@@ -55,6 +62,8 @@
                 | It's the first time I've said that about a DC movie since _The Dark Knight Rises_.
                 | _Final rating:★★★½ - I strongly recommend you make the time._
     .jawbone__similar.js-tab-similar
+        .jawbone__similar__no-similar.js-no-similar
+            | No related movies found for this title.
         .jawbone__similar__movie.js-similar
             .jawbone__similar__movie__title.js-similar-title
                 | Wonder Woman

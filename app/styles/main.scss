@@ -288,6 +288,13 @@ section {
     justify-content: center;
     align-items: center;
 
+    &__no-trailer {
+      display: none;
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 1.2;
+    }
+
     &__trailer {
       width: 20vw;
       margin: 16px;
@@ -316,7 +323,14 @@ section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
+
+    &__no-review {
+      display: none;
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 1.2;
+    }
 
     &__review {
       width: 40vw;
@@ -345,6 +359,13 @@ section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    &__no-similar {
+      display: none;
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 1.2;
+    }
 
     &__movie{
       position: relative;
