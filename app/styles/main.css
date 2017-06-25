@@ -387,7 +387,7 @@ section {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: black;
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -401,6 +401,7 @@ section {
 
 .jawbone__similar__movie:hover:before, .jawbone__similar__movie:hover .jawbone__similar__movie__title, .jawbone__similar__movie:hover .jawbone__similar__movie__meta, .jawbone__similar__movie:hover .jawbone__similar__movie__overview {
   opacity: 1;
+  background: black;
 }
 
 .jawbone__similar__movie__title {
@@ -408,11 +409,13 @@ section {
   position: relative;
   padding: 8px;
   font-size: 1.2rem;
+  background: black;
 }
 
 .jawbone__similar__movie__meta {
   opacity: 0;
   padding: 0 8px;
+  background: black;
 }
 
 .jawbone__similar__movie__meta span {
@@ -435,4 +438,41 @@ section {
   font-size: 0.9rem;
   padding: 8px;
   -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+form {
+  padding-left: 24px;
+  height: 60px;
+}
+
+.mdl-textfield__label,
+.mdl-textfield__input {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 400px;
+  text-align: center;
+  background: transparent;
+  width: 100%;
+  display: none;
+}
+
+.loader svg path,
+.loader svg rect {
+  fill: rgba(255, 255, 255, 0.6);
 }

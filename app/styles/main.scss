@@ -364,7 +364,8 @@ section {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.7);
+        //background-color: rgba(0, 0, 0, 0.7);
+        background: black;
         width: 100%;
         height: 100%;
         opacity: 0;
@@ -376,6 +377,7 @@ section {
 
         &:before, .jawbone__similar__movie__title, .jawbone__similar__movie__meta, .jawbone__similar__movie__overview {
           opacity: 1;
+          background: black;
         }
       }
 
@@ -384,11 +386,13 @@ section {
         position: relative;
         padding: 8px;
         font-size: 1.2rem;
+        background: black;
       }
 
       &__meta {
         opacity: 0;
         padding: 0 8px;
+        background: black;
 
         span {
           position: relative;
@@ -411,6 +415,8 @@ section {
         font-size: 0.9rem;
         padding: 8px;
         -webkit-font-smoothing: antialiased;
+        -webkit-backface-visibility: hidden;
+        transition: all 0.2s ease;
       }
 
     }
@@ -418,5 +424,39 @@ section {
 
 
 }
+
+//search page
+//overrides
+form {
+  padding-left: 24px;
+  height: 60px;
+}
+
+.mdl-textfield__label,
+.mdl-textfield__input {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+
+//loader
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  text-align: center;
+  background: transparent;
+  width: 100%;
+  display: none;
+
+  svg path,
+  svg rect{
+    fill: $secondary-color;
+  }
+}
+
 
 
