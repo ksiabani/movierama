@@ -98,6 +98,9 @@ section {
 .movie-card__title {
   font-size: 1.3rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie-card__meta {
@@ -112,7 +115,9 @@ section {
 
 .movie-card__genres {
   font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
   width: 100%;
+  padding: 4px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -247,18 +252,23 @@ section {
 }
 
 .jawbone__overview {
-  width: 30%;
+  width: 40%;
   padding: 24px;
 }
 
 .jawbone__overview__title {
   font-size: 3rem;
   padding: 16px;
+  line-height: 1;
+}
+
+.jawbone__overview__meta {
+  padding: 8px;
 }
 
 .jawbone__overview__meta span {
   font-size: 1.5rem;
-  padding: 16px;
+  padding: 0 8px;
 }
 
 .jawbone__overview__meta__rating {
@@ -272,6 +282,8 @@ section {
 .jawbone__overview__description {
   color: rgba(255, 255, 255, 0.6);
   padding: 8px 16px;
+  max-height: 115px;
+  overflow: scroll;
 }
 
 .jawbone__trailers {
@@ -291,6 +303,7 @@ section {
   width: 20vw;
   margin: 16px;
   cursor: pointer;
+  display: none;
 }
 
 .jawbone__trailers__trailer__img img {
@@ -299,7 +312,7 @@ section {
 }
 
 .jawbone__trailers__trailer__title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.6);
   padding: 8px;
@@ -323,12 +336,13 @@ section {
 
 .jawbone__reviews__review {
   width: 40vw;
-  height: 35%;
+  height: 70%;
   background-color: rgba(0, 0, 0, 0.6);
   overflow: scroll;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.6);
   margin: 0 8px;
+  display: none;
 }
 
 .jawbone__reviews__review__author {
@@ -357,13 +371,15 @@ section {
 
 .jawbone__similar__movie {
   position: relative;
-  width: 15vw;
+  width: 15%;
   height: 70%;
   margin: 8px 16px;
   cursor: pointer;
   transition: all 0.2s ease;
   background-image: url(http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg);
   background-size: cover;
+  display: none;
+  overflow: scroll;
 }
 
 .jawbone__similar__movie:before {
@@ -371,7 +387,7 @@ section {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
   opacity: 0;

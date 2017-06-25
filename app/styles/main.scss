@@ -108,6 +108,9 @@ section {
   &__title {
     font-size: 1.3rem;
     font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__meta {
@@ -121,7 +124,9 @@ section {
 
   &__genres {
     font-size: 1rem;
+    color: $secondary-color;
     width: 100%;
+    padding: 4px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -244,19 +249,21 @@ section {
   }
 
   &__overview {
-    width: 30%;
+    width: 40%;
     padding: 24px;
 
     &__title {
       font-size: 3rem;
       padding: 16px;
+      line-height: 1;
     }
 
     &__meta {
+      padding: 8px;
 
       span {
         font-size: 1.5rem;
-        padding: 16px;
+        padding: 0 8px;
       }
 
       &__rating {
@@ -271,6 +278,8 @@ section {
     &__description {
       color: $secondary-color;
       padding: 8px 16px;
+      max-height: 115px;
+      overflow: scroll;
     }
   }
 
@@ -278,12 +287,12 @@ section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    //background-color: rgba(0, 0, 0, 0.3);
 
     &__trailer {
       width: 20vw;
       margin: 16px;
       cursor: pointer;
+      display: none;
 
       &__img {
         img {
@@ -293,7 +302,7 @@ section {
       }
 
       &__title {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: lighter;
         color: $secondary-color;
         padding: 8px;
@@ -311,12 +320,13 @@ section {
 
     &__review {
       width: 40vw;
-      height: 35%;
+      height: 70%;
       background-color: rgba(0, 0, 0, 0.6);
       overflow: scroll;
       cursor: pointer;
       color: $secondary-color;
       margin: 0 8px;
+      display: none;
 
       &__author {
         font-size: 1.2rem;
@@ -338,7 +348,7 @@ section {
 
     &__movie{
       position: relative;
-      width: 15vw;
+      width: 15%;
       height: 70%;
       margin: 8px 16px;
       cursor: pointer;
@@ -346,13 +356,15 @@ section {
       background-image: url(http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg);
       background-size: cover;
       //-webkit-backface-visibility: hidden;
+      display: none;
+      overflow: scroll;
 
       &:before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.7);
         width: 100%;
         height: 100%;
         opacity: 0;
