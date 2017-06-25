@@ -50,9 +50,7 @@ section {
   max-width: 1312px;
   padding-left: 16px;
   padding-right: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: start;
@@ -143,8 +141,6 @@ section {
   font-family: "Raleway", sans-serif;
   color: white;
   position: relative;
-  display: none;
-  transition: all 0.3s ease;
   max-height: 520px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -157,6 +153,21 @@ section {
   width: calc(100% - 16px);
   margin: 8px;
   overflow: hidden;
+  background-position: right;
+  background-size: contain;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: height 0.3s ease;
+}
+
+.jawbone.is-open {
+  height: 450px;
+  visibility: visible;
+  opacity: 1;
 }
 
 .jawbone:before {
