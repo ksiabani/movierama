@@ -13,12 +13,14 @@ var jawbone = (function () {
         s = this.settings;
     }
 
-    function create(state, movie) {
+    function create(state, movie, e) {
 
         // Create jawbone from template
         section = document.getElementById(state);
         jawbone = section.getElementsByClassName('jawbone')[0];
         clone = section.appendChild(jawbone.cloneNode(true));
+
+        console.log('Remaining cards to right end: ', Math.floor((window.innerWidth-e.target.getBoundingClientRect().right)/e.target.getBoundingClientRect().width));
 
         // From our newly created clone, let's get elements that we will use later
         navbar = clone.querySelector('.js-jtabs-nav'); // Bottom navigation bar

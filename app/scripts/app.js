@@ -101,8 +101,8 @@
         data.results.map(function (movie) {
             moviecard
                 .create(state, movie)
-                .addEventListener('click', function(){
-                    showJawbone(movie.id)
+                .addEventListener('click', function(e){
+                    showJawbone(movie.id, e)
                 });
         });
     }
@@ -145,13 +145,13 @@
 
     }
 
-    function showJawbone(movieId) {
+    function showJawbone(movieId, e) {
 
         toggleLoader();
         dataservice.getMovieDetails(movieId)
             .then(function (data) {
                 toggleLoader();
-                jawbone.create(state, data);
+                jawbone.create(state, data, e);
             })
             .catch(function (err) {
                 console.log('Error:' + err);
