@@ -186,6 +186,32 @@ section {
   z-index: -1;
 }
 
+.jawbone__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 3rem;
+  padding: 24px 8px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.jawbone__close span {
+  display: block;
+  border-bottom: 2px solid white;
+  width: 32px;
+}
+
+.jawbone__close span:first-of-type {
+  -webkit-transform: rotate(45deg) translateX(1px);
+          transform: rotate(45deg) translateX(1px);
+}
+
+.jawbone__close span:last-of-type {
+  -webkit-transform: rotate(-45deg) translateX(1px);
+          transform: rotate(-45deg) translateX(1px);
+}
+
 .jawbone__tabs-nav {
   position: absolute;
   bottom: 0;

@@ -180,13 +180,30 @@
 
     function showJawbone() {
 
-        var jawbone, jawboneOrder, movieId, movieDetails, tabsNav;
+        var jawbone, jawboneOrder, movieId, movieDetails, jtabs, tabsNav;
         var overviewTab, trailersTab, reviewsTab, similarTab;
         var trailers, reviews, similarMovies;
         var activeSection = state === 'now-playing' ? s.nowPlayingSection : s.searchSection;
 
+
+
+
         jawboneOrder = Math.ceil(this.style.order / 5) * 5;
         jawbone = activeSection.querySelector('div[style*="order: ' + jawboneOrder + ';"]');
+
+
+        // When first opening jawbone, tab Overview must be active
+        tabsNav = jawbone.querySelector('.js-jtabs-nav');
+        jtabs = jawbone.querySelectorAll('div[class*="js-tab-"]');
+        tabsNav.querySelector('.is-active').classList.remove('is-active');
+        tabsNav.querySelector('span[data-target="overview"]').classList.add('is-active');
+        Array.from(jtabs).map(function (tab) {
+            tab.classList.remove('is-active');
+        });
+        jawbone.querySelector('.js-tab-overview').classList.add('is-active');
+
+
+
         overviewTab = jawbone.querySelector('.js-tab-overview');
         trailersTab = jawbone.querySelector('.js-tab-trailers');
         reviewsTab = jawbone.querySelector('.js-tab-reviews');
@@ -195,7 +212,6 @@
         trailers = trailersTab.querySelectorAll('.jawbone__trailers__trailer');
         reviews = reviewsTab.querySelectorAll('.js-review');
         similarMovies = similarTab.querySelectorAll('.js-similar');
-
 
         movieId = this.getAttribute('data-id');
         polling = true;
@@ -210,7 +226,6 @@
                     jawbone.style.backgroundImage = 'url(http://img.youtube.com/vi/' + movieDetails.trailers.youtube[0].source + '/maxresdefault.jpg)';
                 }
                 else {
-                    // jawbone.style.backgroundImage = 'url(http://image.tmdb.org/t/p/w300' + movieDetails.poster_path + ')';
                     jawbone.style.backgroundImage = movieDetails.poster_path ? 'url(http://image.tmdb.org/t/p/w300' + movieDetails.poster_path + ')' : 'url(http://lorempixel.com/300/450/nightlife/)';
                     jawbone.style.backgroundSize = 'cover';
                 }
@@ -272,13 +287,12 @@
                 console.log('Error:' + err);
             });
 
-        // Close all other's
+        // Close all others
         Array.from(activeSection.getElementsByClassName('jawbone')).map(function (jawbone) {
             if (jawbone.style.order != jawboneOrder) {
                 jawbone.classList.remove('is-open');
             }
         });
-
 
         // Scroll to top
         s.content.scroll({
@@ -289,11 +303,14 @@
         });
 
         // TODO: Some elements can go to settings?
-        tabsNav = jawbone.getElementsByClassName('js-jtabs-nav')[0];
         Array.from(tabsNav.querySelectorAll('span')).map(function (tabNavItem) {
             tabNavItem.addEventListener('click', showJawboneTab);
         });
 
+        // Close
+        jawbone.querySelector('.js-jawbone-close').addEventListener('click', function(){
+            jawbone.classList.remove('is-open');
+        });
 
     }
 

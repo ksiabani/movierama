@@ -195,6 +195,32 @@ section {
     z-index: - 1;
   }
 
+  &__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 3rem;
+    padding: 24px 8px;
+    cursor: pointer;
+    z-index: 1;
+
+    span {
+      display: block;
+      border-bottom: 2px solid white;
+      width: 32px;
+    }
+
+    span:first-of-type {
+      transform: rotate(45deg) translateX(1px);
+    }
+
+    span:last-of-type {
+      transform: rotate(-45deg) translateX(1px);
+    }
+
+
+  }
+
   &__tabs-nav {
     position: absolute;
     bottom: 0;
@@ -367,7 +393,7 @@ section {
       line-height: 1.2;
     }
 
-    &__movie{
+    &__movie {
       position: relative;
       width: 15%;
       height: 70%;
@@ -443,7 +469,6 @@ section {
     }
   }
 
-
 }
 
 //search page
@@ -461,9 +486,8 @@ form {
   letter-spacing: .02em;
 }
 
-
 //loader
-.loader{
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -474,7 +498,7 @@ form {
   display: none;
 
   svg path,
-  svg rect{
+  svg rect {
     fill: $secondary-color;
   }
 }
