@@ -259,7 +259,7 @@
                     Array.from(reviews).map(function (review, i) {
                         if (movieDetails.reviews.results[i]) {
                             review.style.display = 'block';
-                            review.querySelector('.js-review-author').textContent = " " + movieDetails.reviews.results[i].author;
+                            review.querySelector('.js-review-author').textContent = ' ' + movieDetails.reviews.results[i].author;
                             review.querySelector('.js-review-text').textContent = movieDetails.reviews.results[i].content;
                         }
                     });

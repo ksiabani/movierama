@@ -7,14 +7,14 @@
     <title>MovieRama</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory-->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css">
     <!-- build:css styles/vendor.css-->
     <!-- bower:css-->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css">
-    <!-- endbower-->
+    <!-- endbowerm-->
     <!-- endbuild-->
     <!-- Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:100,300,400,600,700|Open+Sans:100,300,400,600,700&amp;subset=greek" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <!--link(href='https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700|Open+Sans:100,300,400,600,700&subset=greek', rel='stylesheet')-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- build:css styles/main.css-->
     <link rel="stylesheet" href="styles/main.css">
@@ -24,57 +24,214 @@
     <!-- endbuild-->
   </head>
   <body>
-    <header>
-      <!-- Always shows a header, even in smaller screens.-->
-      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-          <div class="mdl-layout__header-row">
-            <!-- Title--><span class="mdl-layout-title">Title</span>
-            <!-- Add spacer, to align navigation to the right-->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens.-->
-            <nav class="mdl-navigation mdl-layout--large-screen-only"><a class="mdl-navigation__link is-active" href="#intheater">In Theaters</a><a class="mdl-navigation__link" href="#search">Search Movies</a></nav>
-          </div>
-        </header>
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only"><span class="mdl-layout-title">Title</span>
-          <nav class="mdl-navigation"><a class="mdl-navigation__link is-active" href="#intheater">In Theaters</a><a class="mdl-navigation__link" href="#search">Search Movies</a></nav>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row"><span class="mdl-layout-title">MovieRama</span>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation mdl-layout--large-screen-only"><a class="mdl-navigation__link" href="#now-playing">In Theaters</a><a class="mdl-navigation__link" href="#search">Search Movies</a></nav>
         </div>
-        <main class="mdl-layout__content">
-          <div class="page">
-            <!-- Your content goes here-->
-            <h5 class="page__header">In Theaters</h5>
-          </div>
-        </main>
+      </header>
+      <div class="mdl-layout__drawer mdl-layout--small-screen-only"><span class="mdl-layout-title">MovieRama</span>
+        <nav class="mdl-navigation"><a class="mdl-navigation__link is-active" href="#now-playing">In Theaters</a><a class="mdl-navigation__link" href="#search">Search Movies</a></nav>
       </div>
-    </header>
-    <main>
-      <!-- Always shows a header, even in smaller screens.-->
-      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-          <div class="mdl-layout__header-row">
-            <!-- Title--><span class="mdl-layout-title">Title</span>
-            <!-- Add spacer, to align navigation to the right-->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens.-->
-            <nav class="mdl-navigation mdl-layout--large-screen-only"><a class="mdl-navigation__link is-active" href="#intheater">In Theaters</a><a class="mdl-navigation__link" href="#search">Search Movies</a></nav>
+      <main class="mdl-layout__content">
+        <section class="mdl-grid" id="now-playing">
+          <!-- In Theaters-->
+          <h5 class="page__header">In Theaters</h5>
+          <!-- Movie card template-->
+          <div class="movie-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+              <div class="movie-card__title">Wonder Woman</div>
+              <div class="movie-card__meta"><span class="movie-card__meta__year">2017</span><span class="movie-card__meta__rating">6.7/10</span></div>
+              <div class="movie-card__genres">Action, Adventure, Drama, Western</div>
+              <div class="movie-card__overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+            </div>
           </div>
-        </header>
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only"><span class="mdl-layout-title">Title</span>
-          <nav class="mdl-navigation"><a class="mdl-navigation__link is-active" href="#intheater">In Theaters</a><a class="mdl-navigation__link" href="#search">Search Movies</a></nav>
-        </div>
-        <main class="mdl-layout__content">
-          <div class="page">
-            <!-- Your content goes here-->
-            <h5 class="page__header">In Theaters</h5>
+          <!-- Jawbone template-->
+          <div class="jawbone mdl-cell--12-col">
+            <div class="jawbone__close js-jawbone-close"><span></span><span></span></div>
+            <!--&times-->
+            <div class="jawbone__tabs-nav js-jtabs-nav"><span class="is-active" data-target="overview">Overview</span><span data-target="trailers">Trailers</span><span data-target="reviews">Reviews</span><span data-target="similar">Similar</span></div>
+            <div class="jawbone__overview js-tab-overview is-active">
+              <div class="jawbone__overview__title">Wonder Woman</div>
+              <div class="jawbone__overview__meta"><span class="jawbone__overview__meta__year">2017</span><span class="jawbone__overview__meta__rating">6.7/10</span></div>
+              <div class="jawbone__overview__genres">Action, Adventure, Drama, Western</div>
+              <div class="jawbone__overview__description">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+            </div>
+            <div class="jawbone__trailers js-tab-trailers">
+              <div class="jawbone__trailers__no-trailer js-no-trailer"><span>Sorry, no trailer found. Why don't you &nbsp;</span><a href target="_blank">add one?</a></div><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a>
+            </div>
+            <div class="jawbone__reviews js-tab-reviews">
+              <div class="jawbone__reviews__no-review js-no-review"><span>Sorry, no reviews for this movie yet. &nbsp;</span><a href target="_blank">Be the first</a>&nbsp; to write one.</div>
+              <div class="jawbone__reviews__review js-review">
+                <div class="jawbone__reviews__review__author"><i>by</i><span class="js-review-author"> Gimly</span></div>
+                <div class="jawbone__reviews__review__text js-review-text">
+                  I'd just like to thank Patty Jenkins for making a DCIThoughtSheWasWithUniverse movie that wasn't fucking garbage.
+                  If I'm being completely honest, the two people I went to the cinema to watch _Wonder Woman_ with and I did spend the next two hours after coming out of our screening discussing the various problems with the movie, but we also all agreed on one thing: We still loved it.
+                  Maybe it's just the rose-coloured glasses of comparison, but I had an excellent time with _Wonder Woman_, and I'm excited to go back to the cinema and watch it, at least one more time.
+                  It's the first time I've said that about a DC movie since _The Dark Knight Rises_.
+                  _Final rating:★★★½ - I strongly recommend you make the time._
+                </div>
+              </div>
+              <div class="jawbone__reviews__review js-review">
+                <div class="jawbone__reviews__review__author"><i>by</i><span class="js-review-author"> Gimly</span></div>
+                <div class="jawbone__reviews__review__text js-review-text">
+                  I'd just like to thank Patty Jenkins for making a DCIThoughtSheWasWithUniverse movie that wasn't fucking garbage.
+                  If I'm being completely honest, the two people I went to the cinema to watch _Wonder Woman_ with and I did spend the next two hours after coming out of our screening discussing the various problems with the movie, but we also all agreed on one thing: We still loved it.
+                  Maybe it's just the rose-coloured glasses of comparison, but I had an excellent time with _Wonder Woman_, and I'm excited to go back to the cinema and watch it, at least one more time.
+                  It's the first time I've said that about a DC movie since _The Dark Knight Rises_.
+                  _Final rating:★★★½ - I strongly recommend you make the time._
+                </div>
+              </div>
+            </div>
+            <div class="jawbone__similar js-tab-similar">
+              <div class="jawbone__similar__no-similar js-no-similar">No related movies found for this title.</div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+            </div>
           </div>
-        </main>
+        </section>
+        <section class="mdl-grid" id="search">
+          <!--| Search movies here-->
+          <form>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" id="search-input" type="text">
+              <label class="mdl-textfield__label" for="search-input">Search for movies here</label>
+            </div>
+          </form>
+          <!-- Movie card template-->
+          <div class="movie-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+              <div class="movie-card__title">Wonder Woman</div>
+              <div class="movie-card__meta"><span class="movie-card__meta__year">2017</span><span class="movie-card__meta__rating">6.7/10</span></div>
+              <div class="movie-card__genres">Action, Adventure, Drama, Western</div>
+              <div class="movie-card__overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+            </div>
+          </div>
+          <!-- Jawbone template-->
+          <div class="jawbone mdl-cell--12-col">
+            <div class="jawbone__close js-jawbone-close"><span></span><span></span></div>
+            <!--&times-->
+            <div class="jawbone__tabs-nav js-jtabs-nav"><span class="is-active" data-target="overview">Overview</span><span data-target="trailers">Trailers</span><span data-target="reviews">Reviews</span><span data-target="similar">Similar</span></div>
+            <div class="jawbone__overview js-tab-overview is-active">
+              <div class="jawbone__overview__title">Wonder Woman</div>
+              <div class="jawbone__overview__meta"><span class="jawbone__overview__meta__year">2017</span><span class="jawbone__overview__meta__rating">6.7/10</span></div>
+              <div class="jawbone__overview__genres">Action, Adventure, Drama, Western</div>
+              <div class="jawbone__overview__description">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+            </div>
+            <div class="jawbone__trailers js-tab-trailers">
+              <div class="jawbone__trailers__no-trailer js-no-trailer"><span>Sorry, no trailer found. Why don't you &nbsp;</span><a href target="_blank">add one?</a></div><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a><a class="jawbone__trailers__trailer" href target="_blank">
+                <div class="jawbone__trailers__trailer__img"><img src="http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg"></div>
+                <div class="jawbone__trailers__trailer__title">Official Comic-Con Trailer</div></a>
+            </div>
+            <div class="jawbone__reviews js-tab-reviews">
+              <div class="jawbone__reviews__no-review js-no-review"><span>Sorry, no reviews for this movie yet. &nbsp;</span><a href target="_blank">Be the first</a>&nbsp; to write one.</div>
+              <div class="jawbone__reviews__review js-review">
+                <div class="jawbone__reviews__review__author"><i>by</i><span class="js-review-author"> Gimly</span></div>
+                <div class="jawbone__reviews__review__text js-review-text">
+                  I'd just like to thank Patty Jenkins for making a DCIThoughtSheWasWithUniverse movie that wasn't fucking garbage.
+                  If I'm being completely honest, the two people I went to the cinema to watch _Wonder Woman_ with and I did spend the next two hours after coming out of our screening discussing the various problems with the movie, but we also all agreed on one thing: We still loved it.
+                  Maybe it's just the rose-coloured glasses of comparison, but I had an excellent time with _Wonder Woman_, and I'm excited to go back to the cinema and watch it, at least one more time.
+                  It's the first time I've said that about a DC movie since _The Dark Knight Rises_.
+                  _Final rating:★★★½ - I strongly recommend you make the time._
+                </div>
+              </div>
+              <div class="jawbone__reviews__review js-review">
+                <div class="jawbone__reviews__review__author"><i>by</i><span class="js-review-author"> Gimly</span></div>
+                <div class="jawbone__reviews__review__text js-review-text">
+                  I'd just like to thank Patty Jenkins for making a DCIThoughtSheWasWithUniverse movie that wasn't fucking garbage.
+                  If I'm being completely honest, the two people I went to the cinema to watch _Wonder Woman_ with and I did spend the next two hours after coming out of our screening discussing the various problems with the movie, but we also all agreed on one thing: We still loved it.
+                  Maybe it's just the rose-coloured glasses of comparison, but I had an excellent time with _Wonder Woman_, and I'm excited to go back to the cinema and watch it, at least one more time.
+                  It's the first time I've said that about a DC movie since _The Dark Knight Rises_.
+                  _Final rating:★★★½ - I strongly recommend you make the time._
+                </div>
+              </div>
+            </div>
+            <div class="jawbone__similar js-tab-similar">
+              <div class="jawbone__similar__no-similar js-no-similar">No related movies found for this title.</div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+              <div class="jawbone__similar__movie js-similar">
+                <div class="jawbone__similar__movie__title js-similar-title">Wonder Woman</div>
+                <div class="jawbone__similar__movie__meta"><span class="jawbone__similar__movie__meta__year js-similar-year">2017</span><span class="jawbone__similar__movie__meta__rating js-similar-rating">6.7/10</span></div>
+                <div class="jawbone__similar__movie__overview js-similar-overview">An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div class="loader">
+        <svg id="Layer_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewbox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+            <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatcount="indefinite"></animate>
+            <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatcount="indefinite"></animate>
+            <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatcount="indefinite"></animate>
+          </rect>
+          <rect x="8" y="10" width="4" height="10" fill="#333" opacity="0.2">
+            <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatcount="indefinite"></animate>
+            <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatcount="indefinite"></animate>
+            <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatcount="indefinite"></animate>
+          </rect>
+          <rect x="16" y="10" width="4" height="10" fill="#333" opacity="0.2">
+            <animate attributename="opacity" attributetype="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatcount="indefinite"></animate>
+            <animate attributename="height" attributetype="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatcount="indefinite"></animate>
+            <animate attributename="y" attributetype="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatcount="indefinite"></animate>
+          </rect>
+        </svg>
       </div>
-    </main>
-    <!-- build:js scripts/vendor/vendor.js-->
-    <!-- bower:js-->
+    </div>
+    <script src="scripts/dataservice.js"></script>
+    <script src="scripts/app.js"></script>
     <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/smoothscroll/dist/smoothscroll.js"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <!-- endbower-->
-    <!-- endbuild-->
+    <!--script(src='https://cdn.jsdelivr.net/lodash/4.17.4/lodash.core.min.js')-->
   </body>
 </html>
