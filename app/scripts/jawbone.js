@@ -3,7 +3,9 @@ var jawbone = (function () {
     'use strict';
 
     var s, section, jawbone, clone,
-        trailers, reviews, similarMovies, navbar;
+        trailers, reviews, similarMovies, navbar,
+        nodesInBetween, nodeToAppendTo
+        ;
 
     return {
         create: create
@@ -18,9 +20,18 @@ var jawbone = (function () {
         // Create jawbone from template
         section = document.getElementById(state);
         jawbone = section.getElementsByClassName('jawbone')[0];
-        clone = section.appendChild(jawbone.cloneNode(true));
 
-        console.log('Remaining cards to right end: ', Math.floor((window.innerWidth-e.target.getBoundingClientRect().right)/e.target.getBoundingClientRect().width));
+        // Determine the position of the jawbone in the page
+        // How many nodes (movie cards) before it is inserted?
+        nodesInBetween = Math.floor((window.innerWidth - e.target.getBoundingClientRect().right) / e.target.getBoundingClientRect().width);
+        //https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling
+        nodeToAppendTo = e.target.closest('.movie-card');
+        // Skip to the desired element and then insert the cloned jawbone
+        while (nodesInBetween > 0) {
+            nodeToAppendTo = nodeToAppendTo.nextElementSibling;
+            --nodesInBetween;
+        }
+        clone = insertAfter(jawbone.cloneNode(true), nodeToAppendTo);
 
         // From our newly created clone, let's get elements that we will use later
         navbar = clone.querySelector('.js-jtabs-nav'); // Bottom navigation bar
@@ -123,6 +134,9 @@ var jawbone = (function () {
         // Close button
         clone.querySelector('.js-jawbone-close').addEventListener('click', function () {
             clone.classList.remove('is-open');
+            setTimeout(function () {
+                clone.remove();
+            }, 300)
         });
 
         // Unleash the clone!
@@ -143,6 +157,24 @@ var jawbone = (function () {
         navItem.classList.add('is-active');
         clone.querySelector('.js-' + navItem.getAttribute('data-target')).classList.add('is-active');
 
+    }
+
+    // No insertAfter for vanilla JS
+    // https://stackoverflow.com/questions/4793604/how-to-do-insert-after-in-javascript-without-using-a-library
+    function insertAfter(newElement, targetElement) {
+        // target is what you want it to go after. Look for this elements parent.
+        var parent = targetElement.parentNode;
+
+        // if the parents lastchild is the targetElement...
+        if (parent.lastChild == targetElement) {
+            // add the newElement after the target element.
+            parent.appendChild(newElement);
+        } else {
+            // else the target has siblings, insert the new element between the target and it's next sibling.
+            parent.insertBefore(newElement, targetElement.nextSibling);
+        }
+
+        return newElement;
     }
 
 })();

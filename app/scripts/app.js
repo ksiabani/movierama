@@ -27,22 +27,24 @@
     function bindUIActions() {
 
         //TODO: Is onload the propriate event here?
-        window.addEventListener('hashchange', router);
         window.addEventListener('load', router);
+        window.addEventListener('hashchange', router);
 
         // Infinite scrolling
-        s.content.addEventListener('scroll', function () {
-            var reachedBottom = s.content.scrollHeight - s.content.scrollTop === s.content.clientHeight;
-            if (reachedBottom && !polling && s.content.scrollTop > s.content.clientHeight) {
-                if (state === 'now-playing') {
-                    page++;
-                    getLatestMovies(page);
+        Array.from(s.section, function (section) {
+            section.addEventListener('scroll', function () {
+                var reachedBottom = section.scrollHeight - section.scrollTop === section.clientHeight;
+                if (reachedBottom && !polling && section.scrollTop > section.clientHeight) {
+                    if (state === 'now-playing') {
+                        page++;
+                        getLatestMovies(page);
+                    }
+                    else if (state === 'search') {
+                        searchPage++;
+                        searchMovies(s.searchInput.value, searchPage);
+                    }
                 }
-                else if (state === 'search') {
-                    searchPage++;
-                    searchMovies(s.searchInput.value, searchPage);
-                }
-            }
+            });
         });
 
         // Search as we type
@@ -63,7 +65,7 @@
             el.style.display = 'none';
         });
         // Remove 'is-active' class from all navigation links
-        Array.from(s.navLinks).map(function (navLink) {
+        Array.from(s.navLinks, function (navLink) {
             navLink.classList.remove('is-active');
         });
         // Manage states
@@ -101,7 +103,7 @@
         data.results.map(function (movie) {
             moviecard
                 .create(state, movie)
-                .addEventListener('click', function(e){
+                .addEventListener('click', function (e) {
                     showJawbone(movie.id, e)
                 });
         });
@@ -151,19 +153,14 @@
         dataservice.getMovieDetails(movieId)
             .then(function (data) {
                 toggleLoader();
-                jawbone.create(state, data, e);
+                jawbone.create(state, data, e)
+                    .scrollIntoView({
+                        behavior: 'smooth'
+                    });
             })
             .catch(function (err) {
                 console.log('Error:' + err);
             });
-
-        // Scroll to top
-        // s.content.scroll({
-        //     top: (450 * Math.ceil(this.style.order / 5)) - 450,
-        //     left: 0,
-        //     behavior: 'smooth'
-        //
-        // });
 
     }
 
