@@ -2,6 +2,13 @@ var dataservice = (function () {
 
     const API_KEY = 'bc50218d91157b1ba4f142ef7baaa6a0';
 
+    return {
+        getLatestMovies: getLatestMovies,
+        getMovieDetails: getMovieDetails,
+        getSearchResults: getSearchResults,
+        getGenres: getGenres
+    };
+
     function getLatestMovies(page) {
         page = page || 1;
         var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=' + API_KEY + '&page=' + page;
@@ -27,13 +34,5 @@ var dataservice = (function () {
         return fetch(url)
             .then(response => response.json())
     }
-
-    return {
-        getLatestMovies: getLatestMovies,
-        getMovieDetails: getMovieDetails,
-        getSearchResults: getSearchResults,
-        getGenres: getGenres
-    };
-
 
 })();

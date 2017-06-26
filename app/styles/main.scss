@@ -277,6 +277,7 @@ section {
   &__overview {
     width: 40%;
     padding: 24px;
+    overflow: hidden;
 
     &__title {
       font-size: 3rem;
@@ -305,7 +306,8 @@ section {
       color: $secondary-color;
       padding: 8px 16px;
       max-height: 115px;
-      overflow: scroll;
+      overflow-y: scroll;
+      width: calc(100% + 10px); //hide scrollbars
     }
   }
 
@@ -402,9 +404,10 @@ section {
       transition: all 0.2s ease;
       background-image: url(http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg);
       background-size: cover;
-      //-webkit-backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
       display: none;
-      overflow: scroll;
+      overflow: hidden;
 
       &:before {
         content: '';

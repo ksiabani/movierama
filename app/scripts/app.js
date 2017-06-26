@@ -4,12 +4,10 @@
     let genres;
 
     var s, page = 1, searchPage = 1,
-        flexOrder = 1, flexOrderSearch = 1,
         state, polling = false
         ;
 
     return {
-
         settings: {
             section: document.getElementsByTagName('section'),
             searchSection: document.getElementById('search'),
@@ -17,17 +15,13 @@
             navLinks: document.querySelectorAll('nav a'),
             content: document.getElementsByClassName('mdl-layout__content')[0],
             searchInput: document.getElementById('search-input'),
-            // jawbones: document.getElementsByClassName('jawbone')
             loader: document.getElementsByClassName('loader')[0]
         },
-
         init: function () {
             s = this.settings;
             getGenres(); //TODO: Why here? explain
             bindUIActions();
-
         }
-
     };
 
     function bindUIActions() {
@@ -36,8 +30,8 @@
         window.addEventListener('hashchange', router);
         window.addEventListener('load', router);
 
+        // Infinite scrolling
         s.content.addEventListener('scroll', function () {
-
             var reachedBottom = s.content.scrollHeight - s.content.scrollTop === s.content.clientHeight;
             if (reachedBottom && !polling && s.content.scrollTop > s.content.clientHeight) {
                 if (state === 'now-playing') {
@@ -51,17 +45,16 @@
             }
         });
 
+        // Search as we type
         s.searchInput.addEventListener('keyup', function (e) {
             clearSearchResults();
             if (s.searchInput.value.length > 0 && !polling) {
                 searchMovies(s.searchInput.value);
             }
         });
-
     }
 
-
-    ///////
+    // Routing happens here
     function router() {
         // Get page state
         state = location.hash.slice(1) || '/';
@@ -91,11 +84,10 @@
         }
     }
 
+    // Logic for the now playing page. Typically this would go to its own file
     function getLatestMovies(page) {
-        polling = true;
         toggleLoader();
         dataservice.getLatestMovies(page).then(function (data) {
-            polling = false;
             toggleLoader();
             loadMovies(data);
         })
@@ -104,52 +96,29 @@
             });
     }
 
-
+    // Load movies, building from templates
     function loadMovies(data) {
-        var section = document.getElementById(state),
-            movieCard = section.getElementsByClassName('movie-card')[0],
-            cardClone,
-            jawbone = section.getElementsByClassName('jawbone')[0],
-            jawboneClone
-            ;
-        data.results.map(function (movie, i) {
-
-            cardClone = movieCard.cloneNode(true);
-            section.appendChild(cardClone);
-            cardClone.setAttribute('data-id', movie.id);
-            cardClone.style.display = 'flex';
-            cardClone.style.order = state === 'now-playing' ? flexOrder : flexOrderSearch;
-            cardClone.querySelector('.movie-card__title').textContent = movie.title;
-            cardClone.querySelector('.movie-card__overview').textContent = movie.overview;
-            cardClone.querySelector('.movie-card__genres').textContent = movie.genre_ids;
-            cardClone.querySelector('.movie-card__meta__year').textContent = movie.release_date.substring(0, 4);
-            cardClone.querySelector('.movie-card__meta__rating').textContent = movie.vote_average + '/10';
-            cardClone.style.backgroundImage = movie.poster_path ? 'url(http://image.tmdb.org/t/p/w300' + movie.poster_path + ')' : 'url(http://lorempixel.com/300/450/nightlife/)';
-            state === 'now-playing' ? flexOrder++ : flexOrderSearch++;
-            cardClone.addEventListener('click', showJawbone);
-
-            if ((i + 1) % 4 == 0) {
-                jawboneClone = jawbone.cloneNode(true);
-                section.appendChild(jawboneClone);
-                jawboneClone.style.order = state === 'now-playing' ? flexOrder : flexOrderSearch;
-                state === 'now-playing' ? flexOrder++ : flexOrderSearch++;
-            }
-
+        data.results.map(function (movie) {
+            moviecard
+                .create(state, movie)
+                .addEventListener('click', function(){
+                    showJawbone(movie.id)
+                });
         });
     }
 
+    // Get gernres
     function getGenres() {
         dataservice.getGenres().then(function (data) {
             genres = data;
         })
     }
 
+    // Logic for the search page. Typically this would go to its own file
     function searchMovies(searchText, page) {
-        polling = true;
         toggleLoader();
         dataservice.getSearchResults(searchText, page).then(function (data) {
             loadMovies(data);
-            polling = false;
             toggleLoader();
         })
             .catch(function (err) {
@@ -157,10 +126,10 @@
             });
     }
 
+    // Clear search results on keystroke
     function clearSearchResults() {
         var movieCards = s.searchSection.getElementsByClassName('movie-card');
         var jawbones = s.searchSection.getElementsByClassName('jawbone');
-
 
         Array.from(movieCards).map(function (card, i) {
             if (i > 0) {
@@ -174,159 +143,32 @@
             }
         });
 
-        flexOrderSearch = 1;
-
     }
 
-    function showJawbone() {
+    function showJawbone(movieId) {
 
-        var jawbone, jawboneOrder, movieId, movieDetails, jtabs, tabsNav;
-        var overviewTab, trailersTab, reviewsTab, similarTab;
-        var trailers, reviews, similarMovies;
-        var activeSection = state === 'now-playing' ? s.nowPlayingSection : s.searchSection;
-
-
-
-
-        jawboneOrder = Math.ceil(this.style.order / 5) * 5;
-        jawbone = activeSection.querySelector('div[style*="order: ' + jawboneOrder + ';"]');
-
-
-        // When first opening jawbone, tab Overview must be active
-        tabsNav = jawbone.querySelector('.js-jtabs-nav');
-        jtabs = jawbone.querySelectorAll('div[class*="js-tab-"]');
-        tabsNav.querySelector('.is-active').classList.remove('is-active');
-        tabsNav.querySelector('span[data-target="overview"]').classList.add('is-active');
-        Array.from(jtabs).map(function (tab) {
-            tab.classList.remove('is-active');
-        });
-        jawbone.querySelector('.js-tab-overview').classList.add('is-active');
-
-
-
-        overviewTab = jawbone.querySelector('.js-tab-overview');
-        trailersTab = jawbone.querySelector('.js-tab-trailers');
-        reviewsTab = jawbone.querySelector('.js-tab-reviews');
-        similarTab = jawbone.querySelector('.js-tab-similar');
-
-        trailers = trailersTab.querySelectorAll('.jawbone__trailers__trailer');
-        reviews = reviewsTab.querySelectorAll('.js-review');
-        similarMovies = similarTab.querySelectorAll('.js-similar');
-
-        movieId = this.getAttribute('data-id');
-        polling = true;
         toggleLoader();
         dataservice.getMovieDetails(movieId)
             .then(function (data) {
-                polling = false;
                 toggleLoader();
-                movieDetails = data;
-                jawbone.classList.add('is-open');
-                if (movieDetails.trailers.youtube[0]) {
-                    jawbone.style.backgroundImage = 'url(http://img.youtube.com/vi/' + movieDetails.trailers.youtube[0].source + '/maxresdefault.jpg)';
-                }
-                else {
-                    jawbone.style.backgroundImage = movieDetails.poster_path ? 'url(http://image.tmdb.org/t/p/w300' + movieDetails.poster_path + ')' : 'url(http://lorempixel.com/300/450/nightlife/)';
-                    jawbone.style.backgroundSize = 'cover';
-                }
-
-                overviewTab.querySelector('.jawbone__overview__title').textContent = movieDetails.original_title;
-                overviewTab.querySelector('.jawbone__overview__description').textContent = movieDetails.overview;
-                overviewTab.querySelector('.jawbone__overview__genres').textContent = movieDetails.genres;
-                overviewTab.querySelector('.jawbone__overview__meta__year').textContent = movieDetails.release_date.substring(0, 4);
-                overviewTab.querySelector('.jawbone__overview__meta__rating').textContent = movieDetails.vote_average + '/10';
-
-                if (movieDetails.trailers.youtube.length === 0) {
-                    trailersTab.querySelector('.js-no-trailer').style.display = 'block';
-                    trailersTab.querySelector('.js-no-trailer a').href = 'http://www.imdb.com/title/' + movieDetails.imdb_id;
-                }
-                else {
-                    Array.from(trailers).map(function (trailer, i) {
-                        if (movieDetails.trailers.youtube[i]) {
-                            trailer.href = 'https://www.youtube.com/watch?v=' + movieDetails.trailers.youtube[i].source;
-                            trailer.querySelector('img').src = 'http://img.youtube.com/vi/' + movieDetails.trailers.youtube[i].source + '/sddefault.jpg';
-                            trailer.style.display = 'block';
-                            trailer.querySelector('.jawbone__trailers__trailer__title').textContent = movieDetails.trailers.youtube[i].name;
-                        }
-                    });
-                }
-
-                if (movieDetails.reviews.results.length === 0) {
-                    reviewsTab.querySelector('.js-no-review a').href = 'http://www.imdb.com/title/' + movieDetails.imdb_id;
-                    reviewsTab.querySelector('.js-no-review').style.display = 'block';
-                }
-                else {
-                    Array.from(reviews).map(function (review, i) {
-                        if (movieDetails.reviews.results[i]) {
-                            review.style.display = 'block';
-                            review.querySelector('.js-review-author').textContent = ' ' + movieDetails.reviews.results[i].author;
-                            review.querySelector('.js-review-text').textContent = movieDetails.reviews.results[i].content;
-                        }
-                    });
-                }
-
-                if (movieDetails.similar.results.length === 0) {
-                    similarTab.querySelector('.js-no-similar').style.display = 'block';
-                }
-                else {
-                    Array.from(similarMovies).map(function (similar, i) {
-                        if (movieDetails.similar.results[i]) {
-                            similar.style.display = 'block';
-                            similar.style.backgroundImage = 'url(http://image.tmdb.org/t/p/w300' + movieDetails.similar.results[i].poster_path + ')';
-                            similar.querySelector('.js-similar-title').textContent = movieDetails.similar.results[i].original_title;
-                            similar.querySelector('.js-similar-year').textContent = movieDetails.similar.results[i].release_date.substring(0, 4);
-                            similar.querySelector('.js-similar-rating').textContent = movieDetails.similar.results[i].vote_average + '/10';
-                            similar.querySelector('.js-similar-overview').textContent = movieDetails.similar.results[i].overview;
-                        }
-                    });
-                }
-
-
+                jawbone.create(state, data);
             })
             .catch(function (err) {
                 console.log('Error:' + err);
             });
 
-        // Close all others
-        Array.from(activeSection.getElementsByClassName('jawbone')).map(function (jawbone) {
-            if (jawbone.style.order != jawboneOrder) {
-                jawbone.classList.remove('is-open');
-            }
-        });
-
         // Scroll to top
-        s.content.scroll({
-            top: (450 * Math.ceil(this.style.order / 5)) - 450,
-            left: 0,
-            behavior: 'smooth'
+        // s.content.scroll({
+        //     top: (450 * Math.ceil(this.style.order / 5)) - 450,
+        //     left: 0,
+        //     behavior: 'smooth'
+        //
+        // });
 
-        });
-
-        // TODO: Some elements can go to settings?
-        Array.from(tabsNav.querySelectorAll('span')).map(function (tabNavItem) {
-            tabNavItem.addEventListener('click', showJawboneTab);
-        });
-
-        // Close
-        jawbone.querySelector('.js-jawbone-close').addEventListener('click', function(){
-            jawbone.classList.remove('is-open');
-        });
-
-    }
-
-    function showJawboneTab() {
-        var tabsNav = this.parentNode;
-        var jawbone = tabsNav.parentNode;
-        var jtabs = jawbone.querySelectorAll('div[class*="js-tab-"]');
-        tabsNav.querySelector('.is-active').classList.remove('is-active');
-        this.classList.add('is-active');
-        Array.from(jtabs).map(function (tab) {
-            tab.classList.remove('is-active');
-        });
-        jawbone.getElementsByClassName('js-tab-' + this.getAttribute('data-target'))[0].classList.add('is-active');
     }
 
     function toggleLoader() {
+        polling = !polling;
         s.loader.style.display = polling ? 'flex' : 'none';
     }
 

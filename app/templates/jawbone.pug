@@ -1,46 +1,48 @@
 // Jawbone template
-.jawbone.mdl-cell--12-col
+.jawbone.js-jawbone.mdl-cell--12-col
     .jawbone__close.js-jawbone-close
         span
         span
-    //&times
+    // Bottom navigation tabs
     .jawbone__tabs-nav.js-jtabs-nav
         span(data-target="overview").is-active Overview
         span(data-target="trailers") Trailers
         span(data-target="reviews") Reviews
-        span(data-target="similar") Similar
-    .jawbone__overview.js-tab-overview.is-active
-        .jawbone__overview__title Wonder Woman
+        span(data-target="similar-movies") Similar
+    // Overview tab
+    .jawbone__overview.js-overview.is-active
+        .jawbone__overview__title.js-title Wonder Woman
         .jawbone__overview__meta
-            span.jawbone__overview__meta__year 2017
-            span.jawbone__overview__meta__rating 6.7/10
-        .jawbone__overview__genres Action, Adventure, Drama, Western
-        .jawbone__overview__description An Amazon princess comes to the world of Man to become the greatest of the female superheroes.
-    .jawbone__trailers.js-tab-trailers
+            span.jawbone__overview__meta__year.js-year 2017
+            span.jawbone__overview__meta__rating.js-rating 6.7/10
+        .jawbone__overview__genres.js-genres Action, Adventure, Drama, Western
+        .jawbone__overview__description.js-description An Amazon princess comes to the world of Man to become the greatest of the female superheroes.
+    // Trailers tab
+    .jawbone__trailers.js-trailers
         .jawbone__trailers__no-trailer.js-no-trailer
             span Sorry, no trailer found. Why don't you &nbsp;
             a(href, target="_blank") add one?
-        a(href, target="_blank").jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer.js-trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-        a(href, target="_blank").jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer.js-trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-        a(href, target="_blank").jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer.js-trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-        a(href, target="_blank").jawbone__trailers__trailer
+        a(href, target="_blank").jawbone__trailers__trailer.js-trailer
             .jawbone__trailers__trailer__img
                 img(src='http://img.youtube.com/vi/5lGoQhFb4NM/sddefault.jpg')
             .jawbone__trailers__trailer__title
                 | Official Comic-Con Trailer
-    .jawbone__reviews.js-tab-reviews
+    .jawbone__reviews.js-reviews
         .jawbone__reviews__no-review.js-no-review
             span Sorry, no reviews for this movie yet. &nbsp;
             a(href, target="_blank") Be the first
@@ -65,7 +67,7 @@
                 | Maybe it's just the rose-coloured glasses of comparison, but I had an excellent time with _Wonder Woman_, and I'm excited to go back to the cinema and watch it, at least one more time.
                 | It's the first time I've said that about a DC movie since _The Dark Knight Rises_.
                 | _Final rating:★★★½ - I strongly recommend you make the time._
-    .jawbone__similar.js-tab-similar
+    .jawbone__similar.js-similar-movies
         .jawbone__similar__no-similar.js-no-similar
             | No related movies found for this title.
         .jawbone__similar__movie.js-similar
