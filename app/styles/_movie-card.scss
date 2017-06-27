@@ -2,15 +2,8 @@
 // Movie card
 //////////////
 
-.movie-card > .mdl-card__actions {
-  height: 150px;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-}
-
 .movie-card {
+  position: relative;
   //max-width: 300px;
   height: 450px;
   background: url('http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg') center / cover;
@@ -23,9 +16,18 @@
   transition: all 0.6s ease;
   //flex: 0 1 auto;
   z-index: 1;
+  overflow: visible;
 
   @media (max-width: 479px) {
     cursor: default;
+  }
+
+  & > .mdl-card__actions {
+    height: 150px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
   }
 
   &__title {
@@ -62,8 +64,38 @@
     max-height: 45px;
   }
 
+  &__arrow  {
+    width: 115px;
+    height: 115px;
+    position: absolute;
+    bottom: -3px;
+    left: calc(50% - 60px);
+    clip: rect(auto, 180px, auto, 100px);
+    transform: rotate(90deg);
+    opacity: 0;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: linear-gradient(45deg, transparent 0%, rgba(0, 232, 113, 0.1) 87%, #00e871 100%);
+      transform: rotate(45deg);
+    }
+  }
+
 }
 
+
+.movie-card.is-active {
+  .movie-card__arrow {
+    opacity: 1;
+  }
+}
+
+// MDL card overrides
 .mdl-textfield {
 
   &__input {
@@ -79,3 +111,15 @@
   }
 
 }
+
+
+//&__arrow {
+//  position: absolute;
+//  bottom: -15px;
+//  left: calc(50% - 15px);
+//  width: 0;
+//  height: 0;
+//  border-style: solid;
+//  border-width: 35px 35px 0 35px;
+//  border-color: $accent-color transparent transparent transparent;
+//}

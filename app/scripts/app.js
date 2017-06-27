@@ -30,7 +30,9 @@ var app = (function () {
         window.addEventListener('hashchange', router);
 
         // We choose to close all open jawbones on window resize
-        window.addEventListener('resize', closeJawbone);
+        window.addEventListener('resize', function() {
+            closeJawbone(state);
+        });
 
         // Infinite scrolling
         Array.from(s.section, function (section) {
@@ -89,7 +91,7 @@ var app = (function () {
             // Intentional fallthrough
             case 'search':
                 document.getElementById(state).style.display = 'flex';
-                Array.from(document.querySelectorAll('nav a[href="#' + state + '"]'), function(navLink) {
+                Array.from(document.querySelectorAll('nav a[href="#' + state + '"]'), function (navLink) {
                     navLink.classList.add('is-active');
                 });
                 break;
@@ -117,6 +119,7 @@ var app = (function () {
                 .create(state, movie)
                 .addEventListener('click', function (e) {
                     if (window.innerWidth > 479) {
+                        toggleActiveCard(state, e);
                         showJawbone(movie.id, e);
                     }
                 });
@@ -159,8 +162,8 @@ var app = (function () {
                 toggleLoader();
                 jawbone.create(state, data, e);
                 e.target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    behavior: 'smooth'
+                });
             })
             .catch(function (err) {
                 console.log('Error:' + err);
@@ -168,7 +171,7 @@ var app = (function () {
     }
 
     // Close Jawbone
-    function closeJawbone() {
+    function closeJawbone(state) {
         Array.from(s.section, function (section) {
             // If a jawbone already exists, remove it
             if (section.querySelector('.js-jawbone.is-open')) {
@@ -181,6 +184,17 @@ var app = (function () {
     function toggleLoader() {
         polling = !polling;
         s.loader.style.visibility = polling ? 'visible' : 'hidden';
+    }
+
+    // Toggle active card:
+    // Remove .is-active class from current active card and added to the one just clicked
+    function toggleActiveCard(state, e) {
+        //Toggle active state for movie cards
+        var activeCard = document.getElementById(state).querySelector('.movie-card.is-active');
+        if (activeCard) {
+            activeCard.classList.remove('is-active');
+        }
+        e.target.closest('.movie-card').classList.add('is-active');
     }
 
     // Store genres in localstorage, no need for extra calls

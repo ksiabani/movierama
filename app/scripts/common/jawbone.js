@@ -127,9 +127,10 @@ var jawbone = (function () {
             });
         });
 
-        // Close button
+        // Close button and remove active states from jawbone and parent movie card
         clone.querySelector('.js-jawbone-close').addEventListener('click', function () {
             clone.classList.remove('is-open');
+            clone.closest('section').querySelector('.movie-card.is-active').classList.remove('is-active');
             setTimeout(function () {
                 clone.remove();
             }, 300)
