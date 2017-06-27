@@ -14,7 +14,8 @@ var app = (function () {
             content: document.getElementsByClassName('mdl-layout__content')[0],
             searchInput: document.getElementById('search-input'),
             loader: document.getElementsByClassName('loader')[0],
-            drawer: document.querySelector('.mdl-layout__drawer')
+            drawer: document.querySelector('.mdl-layout__drawer'),
+            obfuscator: ''
         },
         init: function () {
             s = this.settings;
@@ -59,7 +60,10 @@ var app = (function () {
         // Close drawer on selecting a menu item
         Array.from(s.navLinks, function (navLink) {
             navLink.addEventListener('click', function () {
+                // Obfuscator is lazy loaded by Material Lite, so we can only catch it here
+                var obfuscator = document.querySelector('.mdl-layout__obfuscator');
                 s.drawer.classList.remove('is-visible');
+                obfuscator.classList.remove('is-visible');
             })
         })
     }
@@ -82,6 +86,7 @@ var app = (function () {
                 if (s.nowPlayingSection.querySelectorAll('.movie-card').length === 1) {
                     getLatestMovies();
                 }
+            // Intentional fallthrough
             case 'search':
                 document.getElementById(state).style.display = 'flex';
                 Array.from(document.querySelectorAll('nav a[href="#' + state + '"]'), function(navLink) {
@@ -149,8 +154,8 @@ var app = (function () {
 
     }
 
+    // Show jawbone
     function showJawbone(movieId, e) {
-
         toggleLoader();
         dataservice.getMovieDetails(movieId)
             .then(function (data) {
@@ -163,14 +168,9 @@ var app = (function () {
             .catch(function (err) {
                 console.log('Error:' + err);
             });
-
     }
 
-    function toggleLoader() {
-        polling = !polling;
-        s.loader.style.visibility = polling ? 'visible' : 'hidden';
-    }
-
+    // Close Jawbone
     function closeJawbone() {
         Array.from(s.section, function (section) {
             // If a jawbone already exists, remove it
@@ -180,6 +180,13 @@ var app = (function () {
         });
     }
 
+    // Loader helper
+    function toggleLoader() {
+        polling = !polling;
+        s.loader.style.visibility = polling ? 'visible' : 'hidden';
+    }
+
+    // Store genres in localstorage, no need for extra calls
     function storeGenresLocally() {
         dataservice.getGenres().then(function (data) {
             data.genres.map(function (genreObj) {
@@ -189,3 +196,4 @@ var app = (function () {
     }
 
 })().init();
+

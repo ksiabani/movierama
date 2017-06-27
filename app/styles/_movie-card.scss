@@ -1,0 +1,81 @@
+//
+// Movie card
+//////////////
+
+.movie-card > .mdl-card__actions {
+  height: 150px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-card {
+  //max-width: 300px;
+  height: 450px;
+  background: url('http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg') center / cover;
+  margin: 8px;
+  cursor: pointer;
+  display: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.6s ease;
+  //flex: 0 1 auto;
+  z-index: 1;
+
+  @media (max-width: 479px) {
+    cursor: default;
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    font-size: 1rem;
+    &__rating {
+      color: $accent-color;
+      font-weight: 500;
+      padding-left: 16px;
+    }
+  }
+
+  &__genres {
+    font-size: 1rem;
+    color: $secondary-color;
+    width: 100%;
+    padding: 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__overview {
+    padding-top: 4px;
+    font-size: 0.9rem;
+    overflow: hidden;
+    max-height: 45px;
+  }
+
+}
+
+.mdl-textfield {
+
+  &__input {
+    font-family: $primary-font;
+  }
+
+  &__label {
+    color: white;
+
+    &:after {
+      background-color: white;
+    }
+  }
+
+}

@@ -2,15 +2,11 @@ var moviecard = (function () {
 
     'use strict';
 
-    var s, section, movieCard, clone;
+    var section, movieCard, clone;
 
     return {
         create: create
     };
-
-    function init() {
-        s = this.settings;
-    }
 
     function create(state, movie, index) {
         section = document.getElementById(state);
@@ -34,4 +30,3 @@ var moviecard = (function () {
     }
 
 })();
-

@@ -2,7 +2,7 @@ var jawbone = (function () {
 
     'use strict';
 
-    var s, section, jawbone, clone,
+    var section, jawbone, clone,
         trailers, reviews, similarMovies, navbar,
         nodesInBetween, nodeToAppendTo
         ;
@@ -10,10 +10,6 @@ var jawbone = (function () {
     return {
         create: create
     };
-
-    function init() {
-        s = this.settings;
-    }
 
     function create(state, movie, e) {
 

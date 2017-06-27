@@ -1,49 +1,45 @@
 doctype html
-html.no-js(lang='')
-  head
-    meta(charset='utf-8')
-    meta(name='description', content='')
-    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0')
-    title MovieRama
-    link(rel='apple-touch-icon', href='apple-touch-icon.png')
-    // Place favicon.ico in the root directory
+html
+    head
+        meta(charset='utf-8')
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0')
+        title MovieRama
 
-    link(rel="stylesheet", href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css")
-    // build:css styles/vendor.css
-    // bower:css
-    // endbower
-    // endbuild
+        link(rel="stylesheet", href="https://code.getmdl.io/1.3.0/material.blue_grey-green.min.css")
 
-    // Fonts
-    //link(href='https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700|Open+Sans:100,300,400,600,700&subset=greek', rel='stylesheet')
-    link(href='https://fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        // build:css styles/vendor.css
+        // bower:css
+        // endbower
+        // endbuild
 
-    // build:css styles/main.css
-    link(rel='stylesheet', href='styles/main.css')
-    // endbuild
+        // Fonts
+        link(href='https://fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
 
-    // build:js scripts/vendor/modernizr.js
-    // endbuild
-  body
-    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
-      block header
-      main.mdl-layout__content
-        section#now-playing.mdl-grid
-          block now-playing
-        section#search.mdl-grid
-          block search
-      block loader
+        // build:css styles/main.css
+        link(rel='stylesheet', href='styles/main.css')
+        // endbuild
 
-    script(src='https://code.getmdl.io/1.3.0/material.min.js')
+    body
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+            block header
+            main.mdl-layout__content
+                section#now-playing.mdl-grid
+                    block now-playing
+                section#search.mdl-grid
+                    block search
+            block loader
 
-    // build:js scripts/vendor.js
-    // bower:js
-    script(src='/bower_components/smoothscroll/dist/smoothscroll.js')
-    // endbower
-    // endbuild
+        script(src='https://code.getmdl.io/1.3.0/material.min.js')
 
-    script(src='scripts/services/dataservice.js')
-    script(src='scripts/common/moviecard.js')
-    script(src='scripts/common/jawbone.js')
-    script(src='scripts/app.js')
+        // build:js scripts/vendor.js
+        // bower:js
+        script(src='/bower_components/smoothscroll/dist/smoothscroll.js')
+        // endbower
+        // endbuild
+
+        script(src='scripts/services/dataservice.js')
+        script(src='scripts/common/moviecard.js')
+        script(src='scripts/common/jawbone.js')
+        script(src='scripts/app.js')

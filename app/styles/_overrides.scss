@@ -1,0 +1,64 @@
+//
+// MDL overrides
+////////////////
+
+// Override colors
+.mdl-layout__container,
+.mdl-layout__header,
+.mdl-layout__drawer,
+.mdl-navigation {
+  background: #212121 !important;
+  color: white !important;
+}
+
+.mdl-layout__container, .mdl-layout-title {
+  font-family: $primary-font;
+}
+
+.mdl-navigation__link.is-active {
+  color: $accent-color !important;
+  border-bottom: 2px solid $accent-color;
+
+  .mdl-layout__drawer & {
+    border-bottom: 0;
+    border-right: 2px solid $accent-color;
+  }
+}
+
+.mdl-layout__content {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mdl-card {
+  min-height: 0;
+}
+
+// Search input
+form {
+  padding-left: 24px;
+  height: 60px;
+}
+
+.mdl-textfield__label,
+.mdl-textfield__input {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+// Grid
+@media (max-width: 839px) and (min-width: 480px) {
+  .mdl-cell--3-col, .mdl-cell--3-col-tablet.mdl-cell--3-col-tablet {
+    width: calc(50% - 16px);
+  }
+}
+
+@media (max-width: 479px) {
+  .mdl-cell--3-col, .mdl-cell--3-col-phone.mdl-cell--3-col-phone {
+    width: calc(100% - 16px);
+  }
+}
+
