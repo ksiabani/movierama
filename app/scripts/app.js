@@ -151,7 +151,6 @@ var app = (function () {
                 s.searchSection.removeChild(jawbone);
             }
         });
-
     }
 
     // Show jawbone
