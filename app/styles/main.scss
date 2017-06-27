@@ -1,17 +1,11 @@
-// bower:scss
-// endbower
 @import "variables";
+
 
 body, html {
   height: 100%;
   font-family: $primary-font;
   font-size: $font-size;
 }
-
-//no scrolling without this
-//.mdl-layout, .mdl-layout__container {
-//  height: auto;
-//}
 
 .mdl-layout__container,
 .mdl-layout__header,
@@ -26,19 +20,31 @@ body, html {
 }
 
 .mdl-navigation__link.is-active {
-  color: $accent-color; // !important;
+  color: $accent-color !important;
   border-bottom: 2px solid $accent-color;
+
+  .mdl-layout__drawer & {
+    border-bottom: 0;
+    border-right: 2px solid $accent-color;
+  }
 }
 
-//
-.page {
+@media (max-width: 839px) and (min-width: 480px) {
+  .mdl-cell--3-col, .mdl-cell--3-col-tablet.mdl-cell--3-col-tablet {
+    width: calc(50% - 16px);
+  }
+}
 
-  &__header {
+@media (max-width: 479px) {
+  .mdl-cell--3-col, .mdl-cell--3-col-phone.mdl-cell--3-col-phone {
+    width: calc(100% - 16px);
+  }
+}
+
+.page__header {
     font-family: $primary-font;
     margin-left: 24px;
   }
-
-}
 
 section {
   color: white !important;
@@ -68,15 +74,7 @@ section {
   }
 }
 
-// cards
 .mdl-card {
-  //max-width: 300px;
-  //height: 450px;
-  //background: url('http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg') center / cover;
-  //margin: 8px;
-  //cursor: pointer;
-  //display: none;
-  //flex-wrap: nowrap;
   min-height: 0;
 }
 
@@ -101,6 +99,10 @@ section {
   transition: all 0.6s ease;
   //flex: 0 1 auto;
   z-index: 1;
+
+  @media (max-width: 479px) {
+    cursor: default;
+  }
 
   &__title {
     font-size: 1.3rem;
@@ -173,6 +175,10 @@ section {
   opacity: 0;
   transition: height 0.3s ease;
 
+  @media (min-width: 480px) and (max-width: 840px) {
+    background-size: cover;
+  }
+
   &.is-open {
     height: 450px;
     visibility: visible;
@@ -215,7 +221,6 @@ section {
       transform: rotate(-45deg) translateX(1px);
     }
 
-
   }
 
   &__tabs-nav {
@@ -224,8 +229,12 @@ section {
     display: flex;
     align-self: center;
     height: 42px;
-    width: 30vw;
+    //width: 30vw;
     z-index: 1;
+
+    @media (min-width: 480px) and (max-width: 840px) {
+      align-self: start;
+    }
 
     span {
       color: $secondary-color;
@@ -391,6 +400,7 @@ section {
     justify-content: center;
     align-items: center;
 
+
     &__no-similar {
       display: none;
       font-size: 1.2rem;
@@ -403,9 +413,9 @@ section {
       width: 15%;
       height: 70%;
       margin: 8px 16px;
-      //cursor: pointer;
+      cursor: pointer;
       transition: all 0.2s ease;
-      background-image: url(http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg);
+      //background-image: url(http://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg);
       background-size: cover;
       -webkit-backface-visibility: hidden;
       -webkit-font-smoothing: antialiased;
@@ -434,18 +444,40 @@ section {
         }
       }
 
+      @media (min-width: 480px) and (max-width: 839px) {
+
+        &:hover {
+          transform: scale(1);
+
+          &:before {
+            opacity: 0;
+            //background: black;
+          }
+        }
+      }
+
       &__title {
         opacity: 0;
         position: relative;
         padding: 8px;
         font-size: 1.2rem;
         background: black;
+
+        @media (min-width: 480px) and (max-width: 839px) {
+          font-size: 1rem;
+          align-self: center;
+          opacity: 1;
+        }
       }
 
       &__meta {
         opacity: 0;
         padding: 0 8px;
         background: black;
+
+        @media (min-width: 480px) and (max-width: 839px) {
+          opacity: 1;
+        }
 
         span {
           position: relative;
@@ -470,6 +502,10 @@ section {
         -webkit-font-smoothing: antialiased;
         -webkit-backface-visibility: hidden;
         transition: all 0.2s ease;
+
+        @media (min-width: 480px) and (max-width: 839px) {
+          display: none;
+        }
       }
 
     }
@@ -497,15 +533,21 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: 100vh;
   text-align: center;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.5);
   width: 100%;
-  display: none;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transition: all 0.1s ease;
+  opacity: 1;
+  visibility: hidden;
 
   svg path,
   svg rect {
-    fill: $secondary-color;
+    fill: $accent-color;
   }
 }
 

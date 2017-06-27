@@ -23,7 +23,7 @@ var jawbone = (function () {
 
         // Determine the position of the jawbone in the page
         // How many nodes (movie cards) before it is inserted?
-        nodesInBetween = Math.floor((window.innerWidth - e.target.getBoundingClientRect().right) / e.target.getBoundingClientRect().width);
+        nodesInBetween = Math.floor((Math.min(1600, window.innerWidth) - e.target.getBoundingClientRect().right) / e.target.getBoundingClientRect().width);
         //https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling
         nodeToAppendTo = e.target.closest('.movie-card');
         // Skip to the desired element and then insert the cloned jawbone
@@ -59,7 +59,7 @@ var jawbone = (function () {
 
         clone.querySelector('.js-title').textContent = movie.original_title;
         clone.querySelector('.js-description').textContent = movie.overview;
-        clone.querySelector('.js-genres').textContent = movie.genres;
+        clone.querySelector('.js-genres').textContent = getGenres(movie.genres);
         clone.querySelector('.js-year').textContent = movie.release_date.substring(0, 4);
         clone.querySelector('.js-rating').textContent = movie.vote_average + '/10';
 
@@ -175,6 +175,12 @@ var jawbone = (function () {
         }
 
         return newElement;
+    }
+
+    function getGenres(genresArr){
+        return genresArr.map(function(genre){
+            return ' ' + genre.name;
+        })
     }
 
 })();

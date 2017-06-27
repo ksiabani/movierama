@@ -1,7 +1,5 @@
-(function () {
+var app = (function () {
     'use strict';
-
-    let genres;
 
     var s, page = 1, searchPage = 1,
         state, polling = false
@@ -15,20 +13,23 @@
             navLinks: document.querySelectorAll('nav a'),
             content: document.getElementsByClassName('mdl-layout__content')[0],
             searchInput: document.getElementById('search-input'),
-            loader: document.getElementsByClassName('loader')[0]
+            loader: document.getElementsByClassName('loader')[0],
+            drawer: document.querySelector('.mdl-layout__drawer')
         },
         init: function () {
             s = this.settings;
-            getGenres(); //TODO: Why here? explain
+            storeGenresLocally();
             bindUIActions();
         }
     };
 
     function bindUIActions() {
 
-        //TODO: Is onload the propriate event here?
         window.addEventListener('load', router);
         window.addEventListener('hashchange', router);
+
+        // We choose to close all open jawbones on window resize
+        window.addEventListener('resize', closeJawbone);
 
         // Infinite scrolling
         Array.from(s.section, function (section) {
@@ -54,6 +55,13 @@
                 searchMovies(s.searchInput.value);
             }
         });
+
+        // Close drawer on selecting a menu item
+        Array.from(s.navLinks, function (navLink) {
+            navLink.addEventListener('click', function () {
+                s.drawer.classList.remove('is-visible');
+            })
+        })
     }
 
     // Routing happens here
@@ -71,15 +79,14 @@
         // Manage states
         switch (state) {
             case 'now-playing':
-                document.getElementById(state).style.display = 'flex';
-                document.querySelector('nav a[href="#' + state + '"]').classList.add('is-active');
                 if (s.nowPlayingSection.querySelectorAll('.movie-card').length === 1) {
                     getLatestMovies();
                 }
-                break;
             case 'search':
                 document.getElementById(state).style.display = 'flex';
-                document.querySelector('nav a[href="#' + state + '"]').classList.add('is-active');
+                Array.from(document.querySelectorAll('nav a[href="#' + state + '"]'), function(navLink) {
+                    navLink.classList.add('is-active');
+                });
                 break;
             default:
                 window.location.hash = '#now-playing';
@@ -104,16 +111,11 @@
             moviecard
                 .create(state, movie)
                 .addEventListener('click', function (e) {
-                    showJawbone(movie.id, e)
+                    if (window.innerWidth > 479) {
+                        showJawbone(movie.id, e);
+                    }
                 });
         });
-    }
-
-    // Get gernres
-    function getGenres() {
-        dataservice.getGenres().then(function (data) {
-            genres = data;
-        })
     }
 
     // Logic for the search page. Typically this would go to its own file
@@ -166,8 +168,24 @@
 
     function toggleLoader() {
         polling = !polling;
-        s.loader.style.display = polling ? 'flex' : 'none';
+        s.loader.style.visibility = polling ? 'visible' : 'hidden';
     }
 
+    function closeJawbone() {
+        Array.from(s.section, function (section) {
+            // If a jawbone already exists, remove it
+            if (section.querySelector('.js-jawbone.is-open')) {
+                section.querySelector('.js-jawbone.is-open').parentNode.removeChild(section.querySelector('.js-jawbone.is-open'));
+            }
+        });
+    }
+
+    function storeGenresLocally() {
+        dataservice.getGenres().then(function (data) {
+            data.genres.map(function (genreObj) {
+                localStorage.setItem(genreObj.id, genreObj.name);
+            })
+        })
+    }
 
 })().init();
