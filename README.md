@@ -1,6 +1,6 @@
 # MovieRama
 
-> A simple SPA on vanilla JS using The Movie Database (TMDb) API. Based on [web app generator](https://github.com/yeoman/generator-webapp) and Google's [Material Design Lite](https://getmdl.io). Read below to setup or go directy to the [app](https://ksiabani.bitbucket.io/movierama). UI heavily inspired by Netflix's [webapp](https://wwww.netflix.com).
+> A simple SPA on vanilla JS using The Movie Database (TMDb) API. Based on [Web app generator](https://github.com/yeoman/generator-webapp) and Google's [Material Design Lite](https://getmdl.io). Read below to setup or go directy to the [app](https://ksiabani.bitbucket.io/movierama). UI heavily inspired by Netflix's [webapp](https://wwww.netflix.com).
 
 ## What's inside?
 
