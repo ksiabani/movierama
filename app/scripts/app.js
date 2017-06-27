@@ -139,13 +139,11 @@ var app = (function () {
     function clearSearchResults() {
         var movieCards = s.searchSection.getElementsByClassName('movie-card');
         var jawbones = s.searchSection.getElementsByClassName('jawbone');
-
         Array.from(movieCards).map(function (card, i) {
             if (i > 0) {
                 s.searchSection.removeChild(card);
             }
         });
-
         Array.from(jawbones).map(function (jawbone, i) {
             if (i > 0) {
                 s.searchSection.removeChild(jawbone);
@@ -159,8 +157,8 @@ var app = (function () {
         dataservice.getMovieDetails(movieId)
             .then(function (data) {
                 toggleLoader();
-                jawbone.create(state, data, e)
-                    .scrollIntoView({
+                jawbone.create(state, data, e);
+                e.target.scrollIntoView({
                         behavior: 'smooth'
                     });
             })

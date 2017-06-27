@@ -22,22 +22,16 @@ section {
 
 section {
   width: 100%;
-  //max-width: 1312px;
-  //padding-left: 16px;
-  //padding-right: 16px;
   padding: 0 15vw !important;
   display: none;
   flex-wrap: wrap;
   justify-content: flex-start;
   overflow-y: scroll;
+  margin: 0 -35px 0 0px !important; //xbrowser hide scrollbars
 
-  margin: 0 -20px 0 0 !important;
-
-  @media (max-width: 1312px) and (min-width: 721px) {
-    //max-width: 1400px;
-    //padding-left: 60px;
-    //padding-right: 60px;
-    padding: 20px !important;
+  @media (max-width: 1312px) {
+    padding-left: calc(1vw - 20px) !important;
+    padding-right: 1vw !important;
   }
 }
 

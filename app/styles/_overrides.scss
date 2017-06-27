@@ -25,6 +25,10 @@
   }
 }
 
+.mdl-layout__drawer {
+  border-right: 1px solid $secondary-color;
+}
+
 .mdl-layout__content {
   display: flex;
   justify-content: center;
