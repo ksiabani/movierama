@@ -22,19 +22,44 @@ section {
 
 section {
   width: 100%;
-  padding: 0 15vw !important;
+  max-width: 1312px;
+  padding-left: 16px;
+  padding-right: 16px;
   display: none;
   flex-wrap: wrap;
   justify-content: flex-start;
   overflow-y: scroll;
-  margin: 0 -35px 0 0px !important; //xbrowser hide scrollbars
+
+  // Hide scrollbars in webkit
+  &::-webkit-scrollbar {
+    display: none
+  }
 
   @media (max-width: 1312px) {
-    padding-left: calc(1vw - 20px) !important;
+    //padding-left: calc(1vw - 20px) !important;
+    padding-left: 3vw !important;
     padding-right: 3vw !important;
   }
 }
 
+// Firefox only rule to hide scrollbars
+// https://browserstrangeness.bitbucket.io/css_hacks.html#firefox
+@supports (-moz-appearance:none) {
+  section {
+    width: 100%;
+    padding: 0 16vw !important;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    margin: 0 -27px 0 0px !important;
+
+    @media (max-width: 1312px) {
+      padding: 0 10px !important;
+      margin: 0 -27px 0 -10px !important;
+    }
+  }
+}
 
 
 
